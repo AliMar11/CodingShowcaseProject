@@ -11,6 +11,6 @@
 
 @interface CSPClient : NSObject
 
-+ (void)searchNewsWithKeyword: (NSString *)keyword withCompletion: (void (^)(NSArray *searchedContent))completion;
++(void)searchNewsWithKeyword: (NSString *)keyword withCompletion: (void (^)(NSArray *searchedContent))completion;
 
 @end

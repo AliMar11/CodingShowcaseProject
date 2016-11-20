@@ -8,19 +8,16 @@
 
 #import "CSPClient.h"
 
-//@interface Client ()
-//
-//@end
-
 @implementation CSPClient
 
 
+
 //this method is ran whever a user searches for country news content. If no keyword is given: (A)default keyword is 'current events' for users location (B) tableview shows flags for potential contries
-+ (void)searchNewsWithKeyword: (NSString *)keyword withCompletion: (void (^)(NSArray *searchedContent))completion
++(void)searchNewsWithKeyword: (NSString *)keyword withCompletion: (void (^)(NSArray *searchedContent))completion
 {
     //use keyword from search bar to api search.
     NSArray *searchedContent = [NSArray new];
-    NSString *searchString = [NSString stringWithFormat: @""];
+    NSString *searchString = [NSString stringWithFormat: @"http://country.io/names.json"];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET: searchString parameters:nil progress: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)

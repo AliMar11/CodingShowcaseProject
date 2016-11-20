@@ -7,6 +7,7 @@
 //
 
 #import "CSPViewController.h"
+#import "CSPClient.h"
 
 @interface CSPViewController () <UISearchBarDelegate>
 @end
@@ -30,7 +31,12 @@
     self.searchBar.showsSearchResultsButton = YES;
 
     UIBarButtonItem *searchBarItem = [[UIBarButtonItem alloc]initWithTitle: @"search" style: UIBarButtonItemStylePlain target: self action: @selector(searchButtonTapped)];
-
+    
+    [searchBarItem setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                            [UIFont fontWithName: @"Helvetica-Bold" size: 15], NSFontAttributeName,
+                                            [UIColor blackColor], NSForegroundColorAttributeName, nil]
+                                 forState: UIControlStateNormal];
+    
     self.navigationItem.rightBarButtonItem = searchBarItem;
 }
 
@@ -38,6 +44,7 @@
 -(void)searchButtonTapped
 {
     NSLog(@"search bar tapped");
+
 }
 
 - (void)didReceiveMemoryWarning
