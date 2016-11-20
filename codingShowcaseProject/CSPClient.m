@@ -1,18 +1,18 @@
 //
-//  CPSClient.m
+//  CSPClient.m
 //  codingShowcaseProject
 //
 //  Created by Alicia Marisal on 11/19/16.
 //  Copyright © 2016 AliApps. All rights reserved.
 //
 
-#import "CPSClient.h"
+#import "CSPClient.h"
 
 //@interface Client ()
 //
 //@end
 
-@implementation CPSClient
+@implementation CSPClient
 
 
 //this method is ran whever a user searches for country news content. If no keyword is given: (A)default keyword is 'current events' for users location (B) tableview shows flags for potential contries

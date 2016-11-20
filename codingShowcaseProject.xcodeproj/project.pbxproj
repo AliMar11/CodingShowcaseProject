@@ -13,7 +13,7 @@
 		2B9DBDFA1DE035F200BCE7DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9DBDF81DE035F200BCE7DE /* Main.storyboard */; };
 		2B9DBDFC1DE035F200BCE7DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B9DBDFB1DE035F200BCE7DE /* Assets.xcassets */; };
 		2B9DBDFF1DE035F200BCE7DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9DBDFD1DE035F200BCE7DE /* LaunchScreen.storyboard */; };
-		2B9DBE081DE03C6300BCE7DE /* CPSClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9DBE071DE03C6300BCE7DE /* CPSClient.m */; };
+		2B9DBE081DE03C6300BCE7DE /* CSPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9DBE071DE03C6300BCE7DE /* CSPClient.m */; };
 		2B9DBE0A1DE10CDA00BCE7DE /* AFNetworking in Resources */ = {isa = PBXBuildFile; fileRef = 2B9DBE091DE10CDA00BCE7DE /* AFNetworking */; };
 		2B9DBE361DE110BF00BCE7DE /* AFHTTPSessionManager.h in Sources */ = {isa = PBXBuildFile; fileRef = 2B9DBE291DE110BF00BCE7DE /* AFHTTPSessionManager.h */; };
 		2B9DBE371DE110BF00BCE7DE /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9DBE2A1DE110BF00BCE7DE /* AFHTTPSessionManager.m */; };
@@ -41,8 +41,8 @@
 		2B9DBDFB1DE035F200BCE7DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B9DBDFE1DE035F200BCE7DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B9DBE001DE035F200BCE7DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2B9DBE061DE03C6300BCE7DE /* CPSClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSClient.h; sourceTree = "<group>"; };
-		2B9DBE071DE03C6300BCE7DE /* CPSClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPSClient.m; sourceTree = "<group>"; };
+		2B9DBE061DE03C6300BCE7DE /* CSPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSPClient.h; sourceTree = "<group>"; };
+		2B9DBE071DE03C6300BCE7DE /* CSPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSPClient.m; sourceTree = "<group>"; };
 		2B9DBE091DE10CDA00BCE7DE /* AFNetworking */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AFNetworking; sourceTree = "<group>"; };
 		2B9DBE291DE110BF00BCE7DE /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AFHTTPSessionManager.h; path = codingShowcaseProject/AFNetworking/AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		2B9DBE2A1DE110BF00BCE7DE /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AFHTTPSessionManager.m; path = codingShowcaseProject/AFNetworking/AFHTTPSessionManager.m; sourceTree = "<group>"; };
@@ -93,8 +93,8 @@
 				2B9DBDF31DE035F200BCE7DE /* AppDelegate.m */,
 				2B9DBDF51DE035F200BCE7DE /* CSPViewController.h */,
 				2B9DBDF61DE035F200BCE7DE /* CSPViewController.m */,
-				2B9DBE061DE03C6300BCE7DE /* CPSClient.h */,
-				2B9DBE071DE03C6300BCE7DE /* CPSClient.m */,
+				2B9DBE061DE03C6300BCE7DE /* CSPClient.h */,
+				2B9DBE071DE03C6300BCE7DE /* CSPClient.m */,
 				2B9DBE431DE110E400BCE7DE /* AFNetworkingFiles */,
 				2B9DBDF81DE035F200BCE7DE /* Main.storyboard */,
 				2B9DBDFD1DE035F200BCE7DE /* LaunchScreen.storyboard */,
@@ -208,7 +208,7 @@
 			files = (
 				2B9DBDF71DE035F200BCE7DE /* CSPViewController.m in Sources */,
 				2B9DBDF41DE035F200BCE7DE /* AppDelegate.m in Sources */,
-				2B9DBE081DE03C6300BCE7DE /* CPSClient.m in Sources */,
+				2B9DBE081DE03C6300BCE7DE /* CSPClient.m in Sources */,
 				2B9DBDF11DE035F200BCE7DE /* main.m in Sources */,
 				2B9DBE361DE110BF00BCE7DE /* AFHTTPSessionManager.h in Sources */,
 				2B9DBE371DE110BF00BCE7DE /* AFHTTPSessionManager.m in Sources */,
