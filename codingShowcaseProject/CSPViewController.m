@@ -44,6 +44,9 @@
 -(void)searchButtonTapped
 {
     NSLog(@"search bar tapped");
+    NSString *countryName = [NSString new];
+    countryName = self.searchBar.text;
+    [CSPClient searchCountryName: countryName];
 
 }
 
