@@ -7,6 +7,8 @@
 //
 
 #import "CSPTableViewController.h"
+#import "CSPVideoViewController.h"
+#import "CSPVideo.h"
 
 @interface CSPTableViewController ()
 
@@ -17,80 +19,57 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+
+#pragma mark - Table view data source
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    self.newsContent = [@[@"hack", @"night", @"fun"]mutableCopy];
+    return self.newsContent.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    //here we config the cell depending on what the api looks like (my plan thusfar is to display the title and duration of each video object. If the api call comes back with an image for each video object, I would like to make that image the background for each cell with a transparent blur view on top--- I find this gives a very professional yet eye-catching look and feel to an app^_^)
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"newsContentCell" forIndexPath: indexPath];
+    
+    //remove content from off-screen cells.
+    [[[cell contentView] subviews] makeObjectsPerformSelector: @selector(removeFromSuperview)];
+    
+    CSPVideo *video = self.newsContent[indexPath.row];
+   /*
+         if (video.VIDEOVALUE)
+        {
+    
+            dispatch_async(dispatch_get_main_queue(),
+                   ^{
+                       //setup thevid for each cell with video and video title.
+                       cell.textLabel.text = video.title;
+                       cell.detailTextLabel.text = video.duration;
+
+                   });
+        };
+    */
+    return cell;
+}
+
+#pragma mark - Navigation
+
+//here we will send the url with video.row to the video player VC
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSIndexPath *selectedIndex = self.tableView.indexPathForSelectedRow;
+    CSPVideoViewController *videoVC = [segue destinationViewController];
+    NSURL *videoURL = [NSURL URLWithString: @"place real url here..."];
+    videoVC.chosenContent = videoURL;
+ 
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-#pragma mark - Table view data source
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete implementation, return the number of rows
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

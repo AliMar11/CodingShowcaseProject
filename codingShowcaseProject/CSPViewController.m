@@ -1,18 +1,20 @@
 //
-//  CPSVideoViewController.m
+//  CPSViewController.m
 //  codingShowcaseProject
 //
 //  Created by Alicia Marisal on 11/19/16.
 //  Copyright © 2016 AliApps. All rights reserved.
 //
 
-#import "CSPVideoViewController.h"
+#import "CSPViewController.h"
 #import "CSPClient.h"
+#import "CSPTableViewController.h"
 
-@interface CSPVideoViewController () <UISearchBarDelegate>
+@interface CSPViewController () <UISearchBarDelegate>
+@property (nonatomic, strong) NSMutableArray *videoList;
 @end
 
-@implementation CSPVideoViewController
+@implementation CSPViewController
 
 - (void)viewDidLoad
 {
@@ -40,14 +42,32 @@
     self.navigationItem.rightBarButtonItem = searchBarItem;
 }
 
-//create TableView OR collectionView... ^_^
 -(void)searchButtonTapped
 {
     NSLog(@"search bar tapped");
     NSString *countryName = [NSString new];
     countryName = self.searchBar.text;
-    [CSPClient searchCountryName: countryName];
+    [CSPClient youTubeSearch: self.searchBar.text withCompletion:^(NSMutableArray *videoArray) {
+        //below is what we will actually do:
+       // [self.videoList addObjectsFromArray: videoArray];
+        
+        //testing data for videoplayer:
+//        [self.videoList addObject: videoArray];
+        
+        [self performSegueWithIdentifier: @"tableViewSegue" sender: self];
+        [self.videoList addObject: videoArray];
 
+        }];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+
+    if ([segue.identifier isEqualToString: @"tableViewSegue"])
+    {
+        CSPTableViewController *tableVC = segue.destinationViewController;
+        tableVC.newsContent = self.videoList;
+    }
 }
 
 - (void)didReceiveMemoryWarning

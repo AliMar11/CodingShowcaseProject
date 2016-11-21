@@ -1,5 +1,5 @@
 //
-//  CPSVideoViewController.h
+//  CPSViewController.h
 //  codingShowcaseProject
 //
 //  Created by Alicia Marisal on 11/19/16.
@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h> 
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface CSPVideoViewController : UIViewController
-@property (nonatomic, strong) NSString *keyword;
+@interface CSPViewController : UIViewController
 @property (nonatomic, strong) UISearchBar *searchBar;
 
 @end

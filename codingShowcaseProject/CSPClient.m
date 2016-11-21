@@ -9,91 +9,49 @@
 #import "CSPClient.h"
 @implementation CSPClient
 
-//This method takes the keyword and searches for the Country Code on 'we.postcoder.com'
-+(void)searchCountryName: (NSString *)countryName
-{
-    NSLog(@"countryName entered in searchbar:%@", countryName);
-    //use keyword from search bar to api search.
-    NSString *searchString = [NSString stringWithFormat: @"http://ws.postcoder.com/pcw/PCW45-12345-12345-1234X/country?format=json"];
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager GET: searchString parameters:nil progress: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         //grab responseObject and find country code, pass that over to 'searchNewsWithKeywords' method--that will make the current events query for given country.
-         
-         NSLog(@"SUCCESSFUL Request");
-         NSString *countryCode = [NSString new];
-                  for (NSDictionary *country in responseObject)
-                  {
-                      if ([country[@"countryname"] isEqualToString: countryName])
-                      {
-                          countryCode = country[@"iso2"];
-                          NSLog(@"We found the country search:%@ == %@", countryCode, countryName);
-                          
-                          [self searchNewsWithKeyword: countryCode withCompletion:^(NSArray *searchedContent)
-                           {
-                               
-                             //call tableView here, update with content.
-                          }];
-                      }
-                  }
-         
-         NSLog(@"could not find current events in %@", countryName);
-         
-     }
-         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         NSLog(@"UNSUCCESSFUL Request");
-         //include some awesome error handling here ^_^
-         NSLog(@"Error fetching request. Error= \n%@", error.localizedDescription);
-     }];
-    
-}
+//this method is called whever a user searches for country news content. (A) tableview shows flags for potential contries (B) message given to type in desired country
 
-//this method is called whever a user searches for country news content. If no keyword is given: (A)default keyword is 'current events' for users location (B) tableview shows flags for potential contries (C) message given to type in desired country
-+(void)searchNewsWithKeyword: (NSString *)countryCode withCompletion: (void (^)(NSArray *searchedContent))completion
-{
-    //use keyword from search bar to api search.
-    NSArray *searchedContent = [NSArray new];
-    NSString *searchString = [NSString stringWithFormat: @"http://www.google.com/search?q=currentEvents&gl=country%@",countryCode];
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager GET: searchString parameters:nil progress: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-    {
-        NSLog(@"SUCCESSFUL Request");
-        NSLog(@"RESPONSE OBJECT:\n%@", responseObject);
-        //grab responseObject and parse for content!
-        //place in 'searched content' array.
-        //this will be given to CSPViewController.
-    }
-         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-    {
-        NSLog(@"UNSUCCESSFUL Request");
-        //include some awesome error handling here ^_^
-        NSLog(@"Error fetching request. Error= \n%@", error.localizedDescription);
-    }];
++(void)youTubeSearch: (NSString*)keyword withCompletion: (void(^)(NSMutableArray *videoArray))completion
 
-    completion(searchedContent);
-}
-
--(void)youTubeSearch: (NSString*)keyword
 {
     NSString *searchterm = [keyword stringByReplacingOccurrencesOfString: @" "
                                                               withString: @"+"];
+    //placeholder for api search. 
+//    NSString *youTubeString = [NSString stringWithFormat: @"https://www.youtube.com/results?&part=snippet&q=%@+current+events", searchterm];
     
-    NSString *youTubeString = [NSString stringWithFormat: @"https://www.youtube.com/results?&part=snippet&q=%@", searchterm];
+    NSString *youTubeString = [NSString stringWithFormat: @"http://www.omdbapi.com/?s=starWars&page=1"];
     
+    //the below array will capture the responseObject array we need
+    NSMutableArray *contentArray = [NSMutableArray new];
+    
+    //below will hold video objects
+    NSMutableArray *videoArray = [NSMutableArray new];
     AFHTTPSessionManager *youTubeManager = [AFHTTPSessionManager manager];
     [youTubeManager GET: youTubeString parameters: nil progress: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
     {
         NSLog(@"SUCCESSFUL YOUTUBE Request!");
-   
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-    {
-        NSLog(@"UNSUCCESSFUL YOUTUBE Request");
-        //include some awesome error handling here ^_^
-        NSLog(@"Error fetching request. Error= \n%@", error.localizedDescription);
-    }];
+        NSLog(@"\n\nRESPOSNSE OBJD:\n%@", responseObject);
+        
+        //below we create dictionary snippets of the data we want on eacg video
+        for (NSDictionary *contentDictionary in contentArray)
+        {
+            CSPVideo *video = [[CSPVideo alloc] initWithTitle: contentDictionary[@"titleValue"]
+                                                     duration: contentDictionary [@"durationValue"]];
+            //what will actually happen
+           // [videoArray addObject: video];
+            
+            //test
+            [videoArray addObjectsFromArray:[@[@"hack", @"night", @"fun"]mutableCopy]];
+        }
+        completion(videoArray);
+    }
+            failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+            {
+                NSLog(@"UNSUCCESSFUL YOUTUBE Request");
+                //include some awesome error handling here ^_^
+                NSLog(@"Error fetching request. Error= \n%@", error.localizedDescription);
+                completion([@[] mutableCopy]);
+            }];
 }
 
 

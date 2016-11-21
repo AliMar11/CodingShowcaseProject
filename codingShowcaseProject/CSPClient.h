@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
 #import "CSPViewController.h"
+#import "CSPVideo.h"
 
 @interface CSPClient : NSObject
 
-+(void)searchCountryName: (NSString *)countryName;
-+(void)searchNewsWithKeyword: (NSString *)countryCode withCompletion: (void (^)(NSArray *searchedContent))completion;
++(void)youTubeSearch: (NSString*)keyword withCompletion: (void(^)(NSMutableArray *videoArray))completion;
 
 @end

@@ -24,6 +24,8 @@
 		2B9DBE451DE2AC6800BCE7DE /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9DBE441DE2AC6800BCE7DE /* MediaPlayer.framework */; };
 		2B9DBE481DE2AF4900BCE7DE /* CSPTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9DBE471DE2AF4900BCE7DE /* CSPTableViewController.m */; };
 		2B9DBE4B1DE2B15A00BCE7DE /* CSPVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9DBE4A1DE2B15A00BCE7DE /* CSPVideoViewController.m */; };
+		2B9DBE4E1DE2E08400BCE7DE /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9DBE4D1DE2E08400BCE7DE /* AVKit.framework */; };
+		2B9DBE511DE2EE7200BCE7DE /* CSPVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9DBE501DE2EE7200BCE7DE /* CSPVideo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,9 @@
 		2B9DBE471DE2AF4900BCE7DE /* CSPTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSPTableViewController.m; sourceTree = "<group>"; };
 		2B9DBE491DE2B15A00BCE7DE /* CSPVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSPVideoViewController.h; sourceTree = "<group>"; };
 		2B9DBE4A1DE2B15A00BCE7DE /* CSPVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSPVideoViewController.m; sourceTree = "<group>"; };
+		2B9DBE4D1DE2E08400BCE7DE /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		2B9DBE4F1DE2EE7200BCE7DE /* CSPVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSPVideo.h; sourceTree = "<group>"; };
+		2B9DBE501DE2EE7200BCE7DE /* CSPVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSPVideo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B9DBE4E1DE2E08400BCE7DE /* AVKit.framework in Frameworks */,
 				2B9DBE451DE2AC6800BCE7DE /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,6 +81,7 @@
 		2B9DBDE31DE035F100BCE7DE = {
 			isa = PBXGroup;
 			children = (
+				2B9DBE4D1DE2E08400BCE7DE /* AVKit.framework */,
 				2B9DBE441DE2AC6800BCE7DE /* MediaPlayer.framework */,
 				2B9DBDEE1DE035F200BCE7DE /* codingShowcaseProject */,
 				2B9DBDED1DE035F200BCE7DE /* Products */,
@@ -146,6 +153,8 @@
 				2B9DBDF31DE035F200BCE7DE /* AppDelegate.m */,
 				2B9DBE061DE03C6300BCE7DE /* CSPClient.h */,
 				2B9DBE071DE03C6300BCE7DE /* CSPClient.m */,
+				2B9DBE4F1DE2EE7200BCE7DE /* CSPVideo.h */,
+				2B9DBE501DE2EE7200BCE7DE /* CSPVideo.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -230,6 +239,7 @@
 				2B9DBE3A1DE110BF00BCE7DE /* AFNetworkReachabilityManager.m in Sources */,
 				2B9DBE3C1DE110BF00BCE7DE /* AFSecurityPolicy.m in Sources */,
 				2B9DBE3E1DE110BF00BCE7DE /* AFURLRequestSerialization.m in Sources */,
+				2B9DBE511DE2EE7200BCE7DE /* CSPVideo.m in Sources */,
 				2B9DBE401DE110BF00BCE7DE /* AFURLResponseSerialization.m in Sources */,
 				2B9DBE421DE110BF00BCE7DE /* AFURLSessionManager.m in Sources */,
 				2B9DBE4B1DE2B15A00BCE7DE /* CSPVideoViewController.m in Sources */,

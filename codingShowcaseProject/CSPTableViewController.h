@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CSPTableViewController : UITableViewController
-
+@property (nonatomic, strong) NSArray *newsContent;
 @end

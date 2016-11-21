@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVKit/AVKit.h>
 
 @interface CSPVideoViewController : UIViewController
+
+@property (nonatomic, strong) NSURL *chosenContent;
+
+-(void)playvideo:(NSURL*)chosenContent;
 
 @end
