@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 
 @interface CSPClient : NSObject
+extern 
 
 +(void)searchCountryName: (NSString *)countryName;
 +(void)searchNewsWithKeyword: (NSString *)countryCode withCompletion: (void (^)(NSArray *searchedContent))completion;
