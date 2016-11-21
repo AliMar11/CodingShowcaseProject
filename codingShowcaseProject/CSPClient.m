@@ -7,7 +7,6 @@
 //
 
 #import "CSPClient.h"
-
 @implementation CSPClient
 
 //This method takes the keyword and searches for the Country Code on 'we.postcoder.com'
@@ -75,6 +74,26 @@
     }];
 
     completion(searchedContent);
+}
+
+-(void)youTubeSearch: (NSString*)keyword
+{
+    NSString *searchterm = [keyword stringByReplacingOccurrencesOfString: @" "
+                                                              withString: @"+"];
+    
+    NSString *youTubeString = [NSString stringWithFormat: @"https://www.youtube.com/results?&part=snippet&q=%@", searchterm];
+    
+    AFHTTPSessionManager *youTubeManager = [AFHTTPSessionManager manager];
+    [youTubeManager GET: youTubeString parameters: nil progress: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+    {
+        NSLog(@"SUCCESSFUL YOUTUBE Request!");
+   
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+    {
+        NSLog(@"UNSUCCESSFUL YOUTUBE Request");
+        //include some awesome error handling here ^_^
+        NSLog(@"Error fetching request. Error= \n%@", error.localizedDescription);
+    }];
 }
 
 

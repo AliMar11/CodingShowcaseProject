@@ -1,18 +1,18 @@
 //
-//  CPSViewController.m
+//  CPSVideoViewController.m
 //  codingShowcaseProject
 //
 //  Created by Alicia Marisal on 11/19/16.
 //  Copyright © 2016 AliApps. All rights reserved.
 //
 
-#import "CSPViewController.h"
+#import "CSPVideoViewController.h"
 #import "CSPClient.h"
 
-@interface CSPViewController () <UISearchBarDelegate>
+@interface CSPVideoViewController () <UISearchBarDelegate>
 @end
 
-@implementation CSPViewController
+@implementation CSPVideoViewController
 
 - (void)viewDidLoad
 {

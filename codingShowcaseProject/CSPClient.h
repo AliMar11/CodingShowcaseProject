@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
+#import "CSPViewController.h"
 
 @interface CSPClient : NSObject
-extern 
 
 +(void)searchCountryName: (NSString *)countryName;
 +(void)searchNewsWithKeyword: (NSString *)countryCode withCompletion: (void (^)(NSArray *searchedContent))completion;
