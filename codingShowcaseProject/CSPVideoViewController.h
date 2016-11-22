@@ -12,6 +12,7 @@
 @interface CSPVideoViewController : UIViewController
 
 @property (nonatomic, strong) NSURL *chosenContent;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 -(void)playvideo:(NSURL*)chosenContent;
 

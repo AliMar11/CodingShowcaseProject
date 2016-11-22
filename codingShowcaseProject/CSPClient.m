@@ -16,11 +16,10 @@
 {
     NSString *searchterm = [keyword stringByReplacingOccurrencesOfString: @" "
                                                               withString: @"+"];
-    //placeholder for api search. 
-//    NSString *youTubeString = [NSString stringWithFormat: @"https://www.youtube.com/results?&part=snippet&q=%@+current+events", searchterm];
-    
-    NSString *youTubeString = [NSString stringWithFormat: @"http://www.omdbapi.com/?s=starWars&page=1"];
-    
+//    //placeholder for api search. 
+    NSString *youTubeString = [NSString stringWithFormat: @"https://www.youtube.com/results?&part=snippet&q=%@+current+events", searchterm];
+
+
     //the below array will capture the responseObject array we need
     NSMutableArray *contentArray = [NSMutableArray new];
     
@@ -41,8 +40,10 @@
            // [videoArray addObject: video];
             
             //test
-            [videoArray addObjectsFromArray:[@[@"hack", @"night", @"fun"]mutableCopy]];
+            [videoArray addObjectsFromArray:[@[@"https://www.youtube.com/watch?v=7jYa7dfrXKU"]mutableCopy]];
         }
+        
+        [videoArray addObjectsFromArray:[@[@"https://www.youtube.com/watch?v=7jYa7dfrXKU"]mutableCopy]];
         completion(videoArray);
     }
             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)

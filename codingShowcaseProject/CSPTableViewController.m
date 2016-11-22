@@ -24,7 +24,7 @@
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    self.newsContent = [@[@"hack", @"night", @"fun"]mutableCopy];
+    self.newsContent = [@[@"https://www.youtube.com/watch?v=7jYa7dfrXKU]mutableCopy"]mutableCopy];
     return self.newsContent.count;
 }
 
@@ -62,7 +62,9 @@
 {
     NSIndexPath *selectedIndex = self.tableView.indexPathForSelectedRow;
     CSPVideoViewController *videoVC = [segue destinationViewController];
-    NSURL *videoURL = [NSURL URLWithString: @"place real url here..."];
+    
+    //TEST youtube video
+    NSURL *videoURL = [NSURL URLWithString: @"https://www.youtube.com/results?&part=snippet&q=current+events+Australia"];
     videoVC.chosenContent = videoURL;
  
 }

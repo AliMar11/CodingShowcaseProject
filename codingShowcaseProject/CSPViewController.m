@@ -47,7 +47,8 @@
     NSLog(@"search bar tapped");
     NSString *countryName = [NSString new];
     countryName = self.searchBar.text;
-    [CSPClient youTubeSearch: self.searchBar.text withCompletion:^(NSMutableArray *videoArray) {
+    [CSPClient youTubeSearch: self.searchBar.text withCompletion:^(NSMutableArray *videoArray)
+    {
         //below is what we will actually do:
        // [self.videoList addObjectsFromArray: videoArray];
         
@@ -67,6 +68,7 @@
     {
         CSPTableViewController *tableVC = segue.destinationViewController;
         tableVC.newsContent = self.videoList;
+        
     }
 }
 
