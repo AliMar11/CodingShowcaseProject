@@ -9,8 +9,11 @@
 #import "CSPTableViewController.h"
 #import "CSPVideoViewController.h"
 #import "CSPVideo.h"
+#import "CSPClient.h"
 
 @interface CSPTableViewController ()
+@property (nonatomic, strong) CSPVideo *video;
+@property (nonatomic, strong) CSPVideo *selectedVideo;
 
 @end
 
@@ -19,40 +22,71 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [CSPClient youTubeSearch: self.keyword withCompletion:^(NSMutableArray *videoArray)
+     {
+         self.newsContent = videoArray;
+       
+//reload tableview after we have video content and every time we have new video content.
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^
+         {
+             [self.tableView reloadData];
+         }];
+     }];
 }
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    self.newsContent = [@[@"https://www.youtube.com/watch?v=7jYa7dfrXKU]mutableCopy"]mutableCopy];
     return self.newsContent.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    //here we config the cell depending on what the api looks like (my plan thusfar is to display the title and duration of each video object. If the api call comes back with an image for each video object, I would like to make that image the background for each cell with a transparent blur view on top--- I find this gives a very professional yet eye-catching look and feel to an app^_^)
-    
+//Here we config the cell depending on what the api looks like (my plan thusfar is to display the title and duration of each video object. If the api call comes back with an image for each video object, I would like to make that image the background for each cell with a transparent blur view on top
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"newsContentCell" forIndexPath: indexPath];
     
     //remove content from off-screen cells.
     [[[cell contentView] subviews] makeObjectsPerformSelector: @selector(removeFromSuperview)];
-    
-    CSPVideo *video = self.newsContent[indexPath.row];
-   /*
-         if (video.VIDEOVALUE)
-        {
-    
-            dispatch_async(dispatch_get_main_queue(),
-                   ^{
-                       //setup thevid for each cell with video and video title.
-                       cell.textLabel.text = video.title;
-                       cell.detailTextLabel.text = video.duration;
+   
+    self.video = self.newsContent[indexPath.row];
 
-                   });
-        };
-    */
+    if (cell)
+    {
+        cell.textLabel.text = self.video.title;
+        cell.detailTextLabel.text = self.video.videoDetails;
+    }
+ 
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//attempt to set CSP video object before segue is called...
+    dispatch_async(dispatch_get_main_queue(),
+                   ^{
+                       [CSPVideo reset: self.selectedVideo];
+                       self.selectedVideo = self.newsContent[indexPath.row];
+                       
+                       CSPVideoViewController *videoVC = [[CSPVideoViewController alloc] init];
+                       
+                       videoVC.chosenContent = self.selectedVideo;
+                   });
+}
+
+//attempt to set CSP video object before segue is called...
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if (self.selectedVideo != nil)
+    {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
 }
 
 #pragma mark - Navigation
@@ -60,18 +94,10 @@
 //here we will send the url with video.row to the video player VC
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSIndexPath *selectedIndex = self.tableView.indexPathForSelectedRow;
     CSPVideoViewController *videoVC = [segue destinationViewController];
-    
-    //TEST youtube video
-    NSURL *videoURL = [NSURL URLWithString: @"https://www.youtube.com/results?&part=snippet&q=current+events+Australia"];
-    videoVC.chosenContent = videoURL;
- 
+
+    videoVC.chosenContent = self.selectedVideo;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
 
 @end

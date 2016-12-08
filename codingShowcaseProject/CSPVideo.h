@@ -9,13 +9,17 @@
 #import <Foundation/Foundation.h>
 
 @interface CSPVideo : NSObject
-//here we define everything that is video object
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *duration;
-//@property (nonatomic, strong) NSString *
-//@property (nonatomic, strong) NSString *
-//@property (nonatomic, strong) NSString *
+@property (nonatomic, strong) NSString *videoID;
+@property (nonatomic, strong) NSString *videoDetails;
+//@property (nonatomic, strong) NSString *duration; this info is not within my initial json response.
+
 
 -(instancetype)initWithTitle: (NSString*)title
-                    duration:(NSString*)duration; //etc.
+                 vidDetails: (NSString*)videoDetails
+                     videoID: (NSString*)videoID;//etc.
+//there is a thumbnail if ya want it... (under items/i/snippet/thumbnails)
+
+//reset method for repeat use of 'CSPVideo *selected' content in CSPTableView class.
++(void)reset:(CSPVideo*)video;
 @end

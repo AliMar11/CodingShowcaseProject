@@ -14,45 +14,61 @@
 +(void)youTubeSearch: (NSString*)keyword withCompletion: (void(^)(NSMutableArray *videoArray))completion
 
 {
+
+    //below will hold video objects
+    NSMutableArray *videoArray = [NSMutableArray new];
+    
     NSString *searchterm = [keyword stringByReplacingOccurrencesOfString: @" "
                                                               withString: @"+"];
 //    //placeholder for api search. 
     NSString *youTubeString = [NSString stringWithFormat: @"https://www.youtube.com/results?&part=snippet&q=%@+current+events", searchterm];
-
-
-    //the below array will capture the responseObject array we need
-    NSMutableArray *contentArray = [NSMutableArray new];
+    NSString *youTubeAPI = [NSString stringWithFormat: @"https://www.googleapis.com/youtube/v3/search?key=AIzaSyBt9qg2jqdSrdrcdXeF5BMUfr8IxC2MoD8&part=snippet&q=%@+current+events", searchterm];
     
-    //below will hold video objects
-    NSMutableArray *videoArray = [NSMutableArray new];
-    AFHTTPSessionManager *youTubeManager = [AFHTTPSessionManager manager];
-    [youTubeManager GET: youTubeString parameters: nil progress: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+
+    NSURL *url = [[NSURL alloc]initWithString: youTubeAPI];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL: url];
+    
+    //asynchronous ULR request
+    [[[NSURLSession sharedSession] dataTaskWithRequest: urlRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error)
     {
-        NSLog(@"SUCCESSFUL YOUTUBE Request!");
-        NSLog(@"\n\nRESPOSNSE OBJD:\n%@", responseObject);
-        
-        //below we create dictionary snippets of the data we want on eacg video
-        for (NSDictionary *contentDictionary in contentArray)
+        NSError *jsonError;
+
+        if (!error && data)
         {
-            CSPVideo *video = [[CSPVideo alloc] initWithTitle: contentDictionary[@"titleValue"]
-                                                     duration: contentDictionary [@"durationValue"]];
-            //what will actually happen
-           // [videoArray addObject: video];
+            NSLog(@"SUCCESSFUL REQUEST");
+            NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData: data options:NSJSONReadingMutableContainers error:&jsonError];
             
-            //test
-            [videoArray addObjectsFromArray:[@[@"https://www.youtube.com/watch?v=7jYa7dfrXKU"]mutableCopy]];
-        }
-        
-        [videoArray addObjectsFromArray:[@[@"https://www.youtube.com/watch?v=7jYa7dfrXKU"]mutableCopy]];
-        completion(videoArray);
-    }
-            failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+            if (!jsonError)
             {
-                NSLog(@"UNSUCCESSFUL YOUTUBE Request");
-                //include some awesome error handling here ^_^
-                NSLog(@"Error fetching request. Error= \n%@", error.localizedDescription);
-                completion([@[] mutableCopy]);
-            }];
+                NSLog(@"SUCCESSFUL JSON SERIALIZAITON");
+                
+                NSLog(@"\n\nthe thiiiiiing:\n%@\n\n\n\n", jsonResponse);
+                
+                //the below dictionary will capture a copy of responseObject
+                NSMutableArray *contentArray = [[NSMutableArray alloc] initWithArray: [jsonResponse[@"items"] mutableCopy]];
+                
+               // for(NSArray *videoQuery in contentArray)
+                for (int i = 0;  i < contentArray.count; i++)
+                {
+                CSPVideo *video = [[CSPVideo alloc] initWithTitle: contentArray[i][@"snippet"][@"title"]
+                                                       vidDetails: contentArray[i][@"snippet"][@"description"]
+                                                          videoID: contentArray[i][@"id"][@"videoId"]];
+                
+                    NSLog(@"\n\nVIDEO??????:%@", video);
+                    [videoArray addObject: video];
+                }
+                completion(videoArray);
+
+            }
+            else
+            {
+                NSLog(@"JSON ERROR:%@", jsonError);
+            }
+            
+        }
+    
+    }] resume];
+    
 }
 
 

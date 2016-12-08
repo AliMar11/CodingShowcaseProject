@@ -11,7 +11,6 @@
 #import "CSPTableViewController.h"
 
 @interface CSPViewController () <UISearchBarDelegate>
-@property (nonatomic, strong) NSMutableArray *videoList;
 @end
 
 @implementation CSPViewController
@@ -46,19 +45,11 @@
 {
     NSLog(@"search bar tapped");
     NSString *countryName = [NSString new];
+    
     countryName = self.searchBar.text;
-    [CSPClient youTubeSearch: self.searchBar.text withCompletion:^(NSMutableArray *videoArray)
-    {
-        //below is what we will actually do:
-       // [self.videoList addObjectsFromArray: videoArray];
-        
-        //testing data for videoplayer:
-//        [self.videoList addObject: videoArray];
-        
-        [self performSegueWithIdentifier: @"tableViewSegue" sender: self];
-        [self.videoList addObject: videoArray];
+    
+   [self performSegueWithIdentifier: @"tableViewSegue" sender: self];
 
-        }];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -67,7 +58,9 @@
     if ([segue.identifier isEqualToString: @"tableViewSegue"])
     {
         CSPTableViewController *tableVC = segue.destinationViewController;
-        tableVC.newsContent = self.videoList;
+        tableVC.keyword = self.searchBar.text;
+        NSLog(@"keyword for nextVC:%@",tableVC.keyword);
+        
         
     }
 }

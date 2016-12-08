@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <AVKit/AVKit.h>
+#import "CSPVideo.h"
 
 @interface CSPVideoViewController : UIViewController
 
-@property (nonatomic, strong) NSURL *chosenContent;
+@property (nonatomic, strong) CSPVideo *chosenContent;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
--(void)playvideo:(NSURL*)chosenContent;
+-(void)playvideo:(CSPVideo*)chosenContent;
 
 @end

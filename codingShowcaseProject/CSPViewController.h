@@ -11,6 +11,7 @@
 
 @interface CSPViewController : UIViewController
 @property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) NSMutableArray *videoList;
 
 @end
 

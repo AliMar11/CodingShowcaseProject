@@ -8,19 +8,28 @@
 
 #import "CSPVideo.h"
 
-@implementation CSPVideo
--(instancetype) initWithTitle:(NSString *)title
-                     duration:(NSString *)duration
+@implementation CSPVideo : NSObject
+
+-(instancetype) initWithTitle:(NSString *)title vidDetails:(NSString *)videoDetails videoID:(NSString *)videoID
 {
     self = [super init];
     
     if (self)
     {
         _title = title;
-        _duration = duration;
+        _videoDetails = videoDetails;
+        _videoID = videoID;
+        
+        //_duration = duration;
         //etc.
     }
     return self;
 }
+
++(void)reset:(CSPVideo*)video
+{
+    video = [[CSPVideo alloc] init];
+}
+
 
 @end
