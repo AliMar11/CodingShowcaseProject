@@ -23,6 +23,7 @@
 {
     [super viewDidLoad];
     
+    self.tableView.bounces = YES;
     [CSPClient youTubeSearch: self.keyword withCompletion:^(NSMutableArray *videoArray)
      {
          self.newsContent = videoArray;
@@ -33,6 +34,12 @@
              [self.tableView reloadData];
          }];
      }];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [CSPVideo reset: self.selectedVideo];
+
 }
 
 #pragma mark - Table view data source
@@ -62,40 +69,19 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//attempt to set CSP video object before segue is called...
-    dispatch_async(dispatch_get_main_queue(),
-                   ^{
-                       [CSPVideo reset: self.selectedVideo];
-                       self.selectedVideo = self.newsContent[indexPath.row];
-                       
-                       CSPVideoViewController *videoVC = [[CSPVideoViewController alloc] init];
-                       
-                       videoVC.chosenContent = self.selectedVideo;
-                   });
+    self.selectedVideo = self.newsContent[indexPath.row];
+    
+    [self performSegueWithIdentifier: @"videoVCSegue" sender: self];
 }
-
-//attempt to set CSP video object before segue is called...
--(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
-{
-    if (self.selectedVideo != nil)
-    {
-        return YES;
-    }
-    return NO;
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
 
 #pragma mark - Navigation
-
-//here we will send the url with video.row to the video player VC
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     CSPVideoViewController *videoVC = [segue destinationViewController];
-
     videoVC.chosenContent = self.selectedVideo;
 }
 

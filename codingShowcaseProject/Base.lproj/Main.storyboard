@@ -40,9 +40,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="koz-bp-Cq1" kind="show" identifier="videoVCSegue" id="xSt-ec-7SJ"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -52,6 +49,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="AY9-k3-5Vo"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <segue destination="koz-bp-Cq1" kind="show" identifier="videoVCSegue" id="5KJ-sH-G62"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v0w-V5-S5R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
