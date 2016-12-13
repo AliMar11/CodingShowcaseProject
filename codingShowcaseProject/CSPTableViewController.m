@@ -27,7 +27,7 @@
     [CSPClient youTubeSearch: self.keyword withCompletion:^(NSMutableArray *videoArray)
      {
          self.newsContent = videoArray;
-       
+         
 //reload tableview after we have video content and every time we have new video content.
         [[NSOperationQueue mainQueue] addOperationWithBlock:^
          {
@@ -73,11 +73,18 @@
     
     [self performSegueWithIdentifier: @"videoVCSegue" sender: self];
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headerView = [[UIView alloc] init];
+    headerView.backgroundColor = [UIColor clearColor];
+    return headerView;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
-
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
