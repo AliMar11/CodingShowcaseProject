@@ -59,9 +59,6 @@
     {
         CSPTableViewController *tableVC = segue.destinationViewController;
         tableVC.keyword = self.searchBar.text;
-        NSLog(@"keyword for nextVC:%@",tableVC.keyword);
-        
-        
     }
 }
 

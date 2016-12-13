@@ -12,8 +12,6 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *videoID;
 @property (nonatomic, strong) NSString *videoDetails;
-//@property (nonatomic, strong) NSString *duration; this info is not within my initial json response.
-
 
 -(instancetype)initWithTitle: (NSString*)title
                  vidDetails: (NSString*)videoDetails

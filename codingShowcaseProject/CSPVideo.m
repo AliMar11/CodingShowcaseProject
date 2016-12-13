@@ -19,7 +19,6 @@
         _title = title;
         _videoDetails = videoDetails;
         _videoID = videoID;
-        
         //_duration = duration;
         //etc.
     }

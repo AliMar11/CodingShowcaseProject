@@ -118,22 +118,6 @@
             <point key="canvasLocation" x="3993" y="286"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="9Kc-Zr-8pN">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FTy-iz-66E" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gKz-gF-EQW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bo3-bh-nzj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="554" y="286"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="hyF-a3-TRR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cA6-yq-aNk" sceneMemberID="viewController">

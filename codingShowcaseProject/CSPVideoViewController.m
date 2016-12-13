@@ -12,8 +12,6 @@
 @interface CSPVideoViewController () <UIWebViewDelegate>
 @property (nonatomic, strong) AVPlayer *videoPlayer;
 
-//depricated :(
-//@property (nonatomic, strong) MPMoviePlayerController *moviePlayer;
 @end
 
 @implementation CSPVideoViewController
@@ -31,7 +29,6 @@
      NSString *videoString = [NSString stringWithFormat: @"https://www.youtube.com/watch?v=%@", self.chosenContent.videoID];
     
     NSURL *vidURL = [[NSURL alloc] initWithString: videoString];
-    
     NSLog(@"\n\n\nthe vid url:%@\n\n", vidURL);
 
     self.videoPlayer = [AVPlayer playerWithURL: vidURL];
@@ -44,7 +41,6 @@
 }
 
 //after video plays, set up notification so app aknowledges this, user then can hit the back button or replay video.
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
